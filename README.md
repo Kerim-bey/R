@@ -69,3 +69,42 @@ weightsKWNN = function(i, k)
 kNN — один из простейших алгоритмов классификации, поэтому на реальных задачах он зачастую оказывается неэффективным. Помимо точности классификации, проблемой этого классификатора является скорость классификации: если в обучающей выборке N объектов, в тестовой выборе M объектов, и размерность пространства K, то количество операций для классификации тестовой выборки может быть оценено как O(KMN).
 
 kwNN отличается от kNN, тем что учитывает порядок соседей классифицируемого объекта, улучшая качество классификации.
+
+# Парзеновское окно  
+Для оценки близости объекта u к классу y алгоритм использует следующую функцию:  
+![](https://github.com/Kerim-bey/R/blob/master/img/парзен.svg)  
+где K(z) - функция ядра.  
+Основные типы ядер:  
+![](https://github.com/Kerim-bey/R/blob/master/img/ядро.png)  
+Код для реализации данных типов ядер:  
+###### Епанечникова:  
+kernelE = function(r){ return ((3/4*(1-r^2)*(abs(r)<=1)))}  
+###### Квартическое:   
+kernelQ = function(r){ return ((15 / 16) * (1 - r ^ 2) ^ 2 * (abs(r) <= 1))}  
+###### Треугольное:  
+kernelT = function(r){ return ((1 - abs(r)) * (abs(r) <= 1)) }  
+###### Гауссовское:    
+kernelG = function(r){ return (((2*pi)^(-1/2)) * exp(-1/2*r^2))}  
+###### Прямоугольное:  
+kernelR = function(r){ return ((0.5 * (abs(r) <= 1) ))}
+
+Код алгоритма:  
+PW = function(XL,y,h,metricFunction = euclideanDistance){  
+  l <- dim(xl)[1]
+  weights = rep(0,3)
+  names(weights) = unique(xl[,3])
+  for(i in 1:l)
+  {
+        x=XL[i,1:2]
+    class=XL[i,3]
+        r = metricFunction(x,y)/h
+    weights[class]=kernelR(r)+weights[class];
+  }
+    if(max(weights)==0){ return ("0") }
+    else{ return (names(which.max(weights))) }
+}
+
+# Карты классификаций  
+![](https://github.com/Kerim-bey/R/blob/master/img/pw_map_1.png)  
+![](https://github.com/Kerim-bey/R/blob/master/img/pw_map_2.png)  
+![](https://github.com/Kerim-bey/R/blob/master/img/pw_map_3.png) 
