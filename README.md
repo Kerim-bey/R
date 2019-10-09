@@ -89,21 +89,21 @@ kernelG = function(r){ return (((2*pi)^(-1/2)) * exp(-1/2*r^2))}
 kernelR = function(r){ return ((0.5 * (abs(r) <= 1) ))}
 
 Код алгоритма:  
-PW = function(XL,y,h,metricFunction = euclideanDistance){  
-  l <- dim(xl)[1]
-  weights = rep(0,3)
-  names(weights) = unique(xl[,3])
-  for(i in 1:l)
-  {
-        x=XL[i,1:2]
-    class=XL[i,3]
-        r = metricFunction(x,y)/h
-    weights[class]=kernelR(r)+weights[class];
-  }
-    if(max(weights)==0){ return ("0") }
-    else{ return (names(which.max(weights))) }
-}
-
+PW = function(XL,y,h,metricFunction = euclideanDistance){    
+  l <- dim(xl)[1]  
+  weights = rep(0,3)  
+  names(weights) = unique(xl[,3])  
+  for(i in 1:l)  
+  {  
+        x=XL[i,1:2]  
+    class=XL[i,3]  
+        r = metricFunction(x,y)/h  
+    weights[class]=kernelR(r)+weights[class];  
+  }  
+    if(max(weights)==0){ return ("0") }  
+    else{ return (names(which.max(weights))) }  
+}  
+  
 # Карты классификаций  
 ![](https://github.com/Kerim-bey/R/blob/master/img/pw_map_1.png)  
 ![](https://github.com/Kerim-bey/R/blob/master/img/pw_map_2.png)  
