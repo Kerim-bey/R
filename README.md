@@ -40,5 +40,6 @@
 }
 
 
-![](https://github.com/Kerim-bey/R/blob/master/img/knn2.png)
-
+![](https://github.com/Kerim-bey/R/blob/master/img/knn2.png)     
+![](https://github.com/Kerim-bey/R/blob/master/img/kNN%20классификация.png)
+![](https://github.com/Kerim-bey/R/blob/master/img/LOO.png)
