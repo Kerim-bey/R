@@ -24,7 +24,7 @@
 
  Для повышения надёжности классификации объект относится к тому классу, которому принадлежит большинство из его соседей — k ближайших к нему объектов обучающей выборки.   
  Реализация kNN функции:  
-     
+ ```    
  kNN <- function(xl, z, k)
 {
   ###### Сортируем выборку согласно классифицируемого
@@ -38,7 +38,7 @@
   class <- names(which.max(counts))
   return (class)
 }
-
+```
 
 ![](https://github.com/Kerim-bey/R/blob/master/img/knn2.png)     
 ![](https://github.com/Kerim-bey/R/blob/master/img/kNN%20классификация.png)
