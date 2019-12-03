@@ -3,40 +3,42 @@ euclideanDistance <- function(u, v)
 {
   sqrt(sum((u - v)^2))
 }
-
+#Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸
 sortObjectsByDist <- function(xl, z, metricFunction =
                                 euclideanDistance)
 {
   l <- dim(xl)[1]
   n <- dim(xl)[2] - 1
-  ## Ñîçäà¸ì ìàòðèöó ðàññòîÿíèé
+  #Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð° Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ð¹
   distances <- matrix(NA, l, 2)
   for (i in 1:l)
   {
     distances[i, ] <- c(i, metricFunction(xl[i, 1:n], z))
   }
-  ## Ñîðòèðóåì
+  #ÑÐ¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼
   orderedXl <- xl[order(distances[, 2]), ]
   return (orderedXl);
 }
 
 kNN <- function(xl, z, k)
 {
-  ## Ñîðòèðóåì âûáîðêó ñîãëàñíî êëàññèôèöèðóåìîãî
+  #Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÐµÐ¼ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸
   orderedXl <- sortObjectsByDist(xl, z)
   n <- dim(orderedXl)[2] - 1
-  ## Ïîëó÷àåì êëàññû ïåðâûõ k ñîñåäåé
+  #ÐºÐ»Ð°ÑÑÑ‹ Ð¿ÐµÑ€Ð²Ñ‹Ñ… k ÑÐ¾ÑÐµÐ´ÐµÐ¹
   classes <- orderedXl[1:k, n + 1]
+  #Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ð° ÐºÐ»Ð°ÑÑÐ¾Ð²
   counts <- table(classes)
+  #Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ ÐºÐ»Ð°ÑÑ,Ð²ÑÑ‚Ñ€ÐµÑ‡Ð°ÑŽÑ‰Ð¸Ð¹ÑÑ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð²ÑÐµÐ³Ð¾ Ñ€Ð°Ð·
   class <- names(which.max(counts))
   return (class)
 }
-## Ðèñóåì âûáîðêó
+
 colors <- c("setosa" = "red", "versicolor" = "green3",
             "virginica" = "blue")
 plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col
      = colors[iris$Species], asp = 1)
-## Êëàññèôèêàöèÿ îäíîãî çàäàííîãî îáúåêòà
+
 z <- c(2.7, 1)
 xl <- iris[, 3:5]
 class <- kNN(xl, z, k=6)
