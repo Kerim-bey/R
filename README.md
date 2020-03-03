@@ -132,4 +132,5 @@ return ((x-1)^2)
 }
 ``` 
 Результат работы алгоритма при помощи ADALINE:
+
 ![](https://github.com/Kerim-bey/R/blob/master/img/adaline.png)
