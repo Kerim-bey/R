@@ -118,4 +118,4 @@ PW = function(XL,y,h,metricFunction = euclideanDistance){
 𝑎(𝑥,𝑤) = 𝑠𝑖𝑔𝑛<𝑤, 𝑥>, 𝑤 ∈ ℝ^(n),
 ``` 
 является линейным алгоритм классификации.
-
+![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(2).gif) 
