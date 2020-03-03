@@ -113,5 +113,4 @@ PW = function(XL,y,h,metricFunction = euclideanDistance){
 
 # Линейные алгоритмы классификации
 # ADALINE
-
-
+Пусть 𝑋 = ℝ^n и 𝑌 = {−1;+1}. Алгоритм
