@@ -111,6 +111,7 @@ PW = function(XL,y,h,metricFunction = euclideanDistance){
 ![](https://github.com/Kerim-bey/R/blob/master/img/pw_map_2.png)  
 ![](https://github.com/Kerim-bey/R/blob/master/img/pw_map_3.png) 
 
+# Линейные алгоритмы классификации
 # ADALINE
 
 
