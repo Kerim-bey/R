@@ -200,3 +200,47 @@ line_norm <- function(center,A)
 
 ![](https://github.com/Kerim-bey/R/blob/master/img/cor.png)
 
+# PLUG-IN
+Восстанавливая параметры нормального распределения 𝜇O, 𝛴O для каждого класса 𝑦 ∈ 𝑌 и подставляя в формулу оптимального байесовского классификатора восстановленные плотности, получим подстановочный (plug-in) алгоритм классификации. Параметры нормального распределения оценивают согласно принципа максимума правдоподобия:
+
+![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(5).gif)
+
+![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(6).gif)
+
+Реализация: 
+
+``` 
+## Восстановление центра нормального распределения
+estimateMu <- function(objects)
+{
+## mu = 1 / m * sum_{i=1}^m(objects_i)
+rows <- dim(objects)[1]
+cols <- dim(objects)[2]
+mu <- matrix(NA, 1, cols)
+for (col in 1:cols)
+{
+mu[1, col] = mean(objects[,col])
+}
+return(mu)
+}
+
+## Восстановление ковариационной матрицы нормального
+распределения
+estimateCovarianceMatrix <- function(objects, mu)
+{
+rows <- dim(objects)[1]
+cols <- dim(objects)[2]
+sigma <- matrix(0, cols, cols)
+for (i in 1:rows)
+{
+sigma <- sigma + (t(objects[i,] - mu) %*%
+(objects[i,] - mu)) / (rows - 1)
+}
+return (sigma)
+}
+
+```
+
+Результат работы: 
+
+![](https://github.com/Kerim-bey/R/blob/master/plug.png)
