@@ -252,7 +252,7 @@ return (sigma)
 
 Параметры нормального распределения оценивают согласно принципа максимума правдоподобия:
 
-![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(5).gif)
+![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(6).gif)
 
 ![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(7).gif)
 
