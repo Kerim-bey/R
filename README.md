@@ -244,3 +244,56 @@ return (sigma)
 Результат работы: 
 
 ![](https://github.com/Kerim-bey/R/blob/master/plug.png)
+
+
+# Линейный дискриминант Фишера – ЛДФ
+
+Линейный дискриминант Фишера (ЛДФ), который, в отличии от подстановочного алгоритма, при построении предполагает, что ковариационные матрицы классов равны, и для их восстановления нужно использовать все (всех классов) объекты обучающей выборки.
+
+Параметры нормального распределения оценивают согласно принципа максимума правдоподобия:
+
+![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(5).gif)
+
+![](https://github.com/Kerim-bey/R/blob/master/CodeCogsEqn%20(7).gif)
+
+Реализация: 
+
+``` 
+## Восстановление центра нормального распределения
+estimateMu <- function(x)
+{
+  m <- dim(x)[2]
+  mu <- matrix(NA, 1, m)
+  for(i in 1:m)
+  {
+    mu[1,i] <- mean(x[,i])
+  }
+  return(mu)
+}
+
+## Оценка ковариационной матрицы для ЛДФ
+estimateFisherCovarianceMatrix <- function(objects1, objects2, mu1, mu2)
+{
+  rows1 <- dim(objects1)[1]
+  rows2 <- dim(objects2)[1]
+  rows <- rows1 + rows2
+  cols <- dim(objects1)[2]
+  sigma <- matrix(0, cols, cols)
+  for (i in 1:rows1)
+  {
+    sigma <- sigma + (t(objects1[i,] - mu1) %*%
+                        (objects1[i,] - mu1)) / (rows + 2)
+  }
+  for (i in 1:rows2)
+  {
+    sigma <- sigma + (t(objects2[i,] - mu2) %*%
+                        (objects2[i,] - mu2)) / (rows + 2)
+  }
+  return (sigma)
+}
+
+```
+
+Результат работы: 
+
+![](https://github.com/Kerim-bey/R/blob/master/fisher.png)
